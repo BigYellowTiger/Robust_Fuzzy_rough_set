@@ -1,6 +1,6 @@
 package all_FRS
 
-import all_FRS.Fuzzy_Distance_And_Relation.getFuzzyRelation
+import all_FRS.Fuzzy_Distance_And_Relation.{getFuzzyRelation, getDistance}
 
 // 仅能处理有标签数据集
 class DiffClassRatio_FRS(dataSet:Seq[Seq[Double]], allLabels:Seq[Int], sphereRadius:Double, diffClassThreshold:Double) {
@@ -16,20 +16,18 @@ class DiffClassRatio_FRS(dataSet:Seq[Seq[Double]], allLabels:Seq[Int], sphereRad
     // 算出每个样本的异类率
     for (i <- 0 to dataSet.length-1) {
       val i_label = dataSet(i)(dimension).toInt
-      var diffClassNum = 0
-      var totalNum = 0
+      var diffClassNum = 0.0
+      var totalNum = 0.0
       for (j <- 0 to dataSet.length - 1) {
         val j_label = dataSet(j)(dimension).toInt
-        for (dim_i <- 0 to retainAttributes.length-1) {
-          if (dataSet(j)(dim_i) <= dataSet(i)(dim_i) + sphereRadius
-          && dataSet(j)(dim_i) >= dataSet(i)(dim_i) - sphereRadius) {
-            totalNum += 1
-            if (j_label != i_label)
-              diffClassNum += 1
-          }
+        if (getDistance(dataSet(i), dataSet(j), retainAttributes) <= sphereRadius * sphereRadius) {
+          totalNum += 1
+          if (j_label != i_label)
+            diffClassNum += 1
         }
       }
-      all_dc_ratio(i) = diffClassNum / totalNum
+      val dc_ratio = diffClassNum/totalNum
+      all_dc_ratio(i) = dc_ratio
     }
 
     // 仅有异类率满足要求的样本参与模糊关系的运算
