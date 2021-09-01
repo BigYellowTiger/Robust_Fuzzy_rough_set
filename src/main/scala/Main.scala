@@ -1,5 +1,5 @@
 import scala.io.Source
-import all_FRS.{Classic_FRS, DiffClassRatio_FRS, Beta_PFRS}
+import all_FRS._
 
 object Main {
   def main(args: Array[String]): Unit = {
@@ -18,7 +18,8 @@ object Main {
     val classic_FRS = new Classic_FRS(dataSet, allLabels, 0.1)
     val diffClassRatio_FRS = new DiffClassRatio_FRS(dataSet, allLabels, 12, 0.5)
     val beta_PFRS = new Beta_PFRS(dataSet, allLabels, 0)
-    val lower_approximate = beta_PFRS.getLowerApproximateForEveryLabel(retainAttributes)
+    val softDistance_FRS = new SoftDistance_FRS(dataSet, allLabels, 0.8)
+    val lower_approximate = softDistance_FRS.getLowerApproximateForEveryLabel(retainAttributes)
     for (obj <- lower_approximate)
       println(obj)
   }

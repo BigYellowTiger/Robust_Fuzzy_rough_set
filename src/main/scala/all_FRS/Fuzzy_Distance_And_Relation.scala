@@ -20,4 +20,11 @@ object Fuzzy_Distance_And_Relation {
     pow(2.7183, -getDistance(x, y, retainAttributes) / para)
 //    1-getDistance(x, y, retainAttributes) 大于1会出问题，比如beta精度FRS
   }
+
+  // 传递距离的高斯核函数
+  def getFuzzyRelation(dis:Double):Double = {
+    val para = 10 // 高斯核函数参数
+    pow(2.7183, -dis / para)
+    //    1-getDistance(x, y, retainAttributes) 大于1会出问题，比如beta精度FRS
+  }
 }
