@@ -19,7 +19,8 @@ object Main {
     val diffClassRatio_FRS = new DiffClassRatio_FRS(dataSet, allLabels, 12, 0.5)
     val beta_PFRS = new Beta_PFRS(dataSet, allLabels, 0)
     val softDistance_FRS = new SoftDistance_FRS(dataSet, allLabels, 0.8)
-    val lower_approximate = softDistance_FRS.getLowerApproximateForEveryLabel(retainAttributes)
+    val knn_FRS = new Knn_FRS(dataSet, allLabels, k=3, "median")
+    val lower_approximate = knn_FRS.getLowerApproximateForEveryLabel(retainAttributes)
     for (obj <- lower_approximate)
       println(obj)
   }

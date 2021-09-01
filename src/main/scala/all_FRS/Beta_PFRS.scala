@@ -60,7 +60,6 @@ class Beta_PFRS(dataSet:Seq[Seq[Double]], allLabels:Seq[Int], beta:Double) {
       }
       result(i) = all_sample_min_apr(start + cur_i_n-1)._2
     }
-
     result.toSeq
   }
 
