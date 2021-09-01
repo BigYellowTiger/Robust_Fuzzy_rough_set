@@ -16,8 +16,8 @@ object Fuzzy_Distance_And_Relation {
 
   // 默认采用高斯核函数，以后有需要再添加别的相似度计算方法
   def getFuzzyRelation(x:Seq[Double], y:Seq[Double], retainAttributes:Seq[Boolean]):Double = {
-//    val para = 2 // 高斯核函数参数
-//    pow(2.7183, -getDistance(x, y, deleteArray) / para)
-    1-getDistance(x, y, retainAttributes)
+    val para = 10 // 高斯核函数参数
+    pow(2.7183, -getDistance(x, y, retainAttributes) / para)
+//    1-getDistance(x, y, retainAttributes) 大于1会出问题，比如beta精度FRS
   }
 }

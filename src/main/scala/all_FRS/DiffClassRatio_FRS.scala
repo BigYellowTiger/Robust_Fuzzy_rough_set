@@ -6,6 +6,7 @@ import all_FRS.Fuzzy_Distance_And_Relation.{getFuzzyRelation, getDistance}
 class DiffClassRatio_FRS(dataSet:Seq[Seq[Double]], allLabels:Seq[Int], sphereRadius:Double, diffClassThreshold:Double) {
 
   // 下近似计算方法为Di中每个样本构造的超球面内异类样本占比，而且根据阈值对样本的隶属度划分为0或1
+  // 仅有异类率满足要求的样本会参与下近似计算
   def getLowerApproximateForEveryLabel(retainAttributes:Seq[Boolean]):Seq[Double] = {
     val dimension = retainAttributes.length
     val all_dc_ratio = new Array[Double](dataSet.length)
