@@ -20,7 +20,8 @@ object Main {
     val beta_PFRS = new Beta_PFRS(dataSet, allLabels, 0)
     val softDistance_FRS = new SoftDistance_FRS(dataSet, allLabels, 0.8)
     val knn_FRS = new Knn_FRS(dataSet, allLabels, k=3, "median")
-    val lower_approximate = knn_FRS.getLowerApproximateForEveryLabel(retainAttributes)
+    val fvp_RS = new Fvp_RS(dataSet, allLabels, 0.8)
+    val lower_approximate = fvp_RS.getLowerApproximateForEveryLabel(retainAttributes)
     for (obj <- lower_approximate)
       println(obj)
   }

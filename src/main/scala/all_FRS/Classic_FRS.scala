@@ -7,7 +7,7 @@ class Classic_FRS(dataSet:Seq[Seq[Double]], allLabels:Seq[Int], fuzzySimilarityT
     val dimension = retainAttributes.length
     val result = new Array[Double](allLabels.length) // 记录了每个标签的下近似取值
     for (i <- 0 to result.length-1)
-      result(i) = Int.MaxValue
+      result(i) = Double.MaxValue
 
     for (i <- 0 to dataSet.length-2) {
       val i_label = dataSet(i)(dimension).toInt
