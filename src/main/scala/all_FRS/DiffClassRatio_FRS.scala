@@ -2,7 +2,7 @@ package all_FRS
 
 import all_FRS.Fuzzy_Distance_And_Relation.{getFuzzyRelation, getDistance}
 
-// 仅能处理有标签数据集
+// 李钰雯博士的异类率模糊粗糙集
 class DiffClassRatio_FRS(dataSet:Seq[Seq[Double]], allLabels:Seq[Int], sphereRadius:Double, diffClassThreshold:Double) {
 
   // 下近似计算方法为Di中每个样本构造的超球面内异类样本占比，而且根据阈值对样本的隶属度划分为0或1
